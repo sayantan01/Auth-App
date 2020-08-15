@@ -20,7 +20,6 @@ export const signin=(user)=>{
 export const signup=(user)=>{
     return async(dispatch)=>{
         const response=await axios.post('/api/register',user)
-        console.log(response)
 
         const data=response.data.user
         if(response.data.status==='ok')

@@ -9,7 +9,6 @@ const initialState={
 
 function reducer(state=initialState,action)
 {
-	console.log('reducer',state,action)
 	Object.freeze(state)
     switch(action.type)
     {

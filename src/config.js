@@ -1,8 +1,8 @@
 
 module.exports = {
     PORT:process.env.PORT || 5000,
-    NODE_ENV:'development',
-
+    //NODE_ENV:'development',
+    NODE_ENV:'production',
     SESS_NAME:'sid',
     SESS_SECRET:'somesecret',
     SESS_TIME:1000*60*60,        //1 hour

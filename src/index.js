@@ -12,7 +12,7 @@ app.use(bodyParser.json())
 
 app.use(express.static(path.join(__dirname+'../../client/build')))
 
-const {PORT, SESS_NAME, SESS_SECRET, SESS_TIME} = require('./config')
+const {PORT, SESS_NAME, SESS_SECRET, SESS_TIME, NODE_ENV} = require('./config')
 
 app.use(session({
     name:SESS_NAME,
@@ -22,7 +22,8 @@ app.use(session({
     rolling:true,
     cookie:{
         maxAge:SESS_TIME,
-        sameSite:true
+        sameSite:true,
+        secure:(NODE_ENV==='production')?true:false
     }
 }))
 

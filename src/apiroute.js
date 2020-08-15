@@ -1,16 +1,17 @@
 const express=require('express')
 const router=express.Router()
-
+const Joi=require('joi')
+const check=require('./validation')
 const {User,Role}=require('./models')
 const {SESS_NAME} = require('./config')
 
 router.post('/register',async(req,res)=>{
-    //validate email, password and role
     const {email,password,role} = req.body
     try{
+        await Joi.validate({email,password},check)
         const user=await User.findOne({where:{email:email}})
         if(user!==null)
-            res.send({status:'err',msg:'User exists'})
+            res.send({status:'err',msg:'User exists!! Go to Sign in page'})
         else
         {
             const resUser=await User.create({email,password})
@@ -36,9 +37,10 @@ router.post('/login',async(req,res)=>{
     //validate email and password
     const {email,password}=req.body
     try{
+        await Joi.validate({email,password},check)
         const user=await User.findOne({where:{email:email}})
         if(!user)
-            res.send({status:'err',msg:'User Not Found'})
+            res.send({status:'err',msg:'User Not Found!! Go to Sign up page'})
         else
         {
             const validate=await user.validatePassword(req.body.password)
@@ -58,6 +60,7 @@ router.post('/login',async(req,res)=>{
         }
     }
     catch(err){
+        console.log(err)
         res.status(400).send({status:'err',err})
     }
 })
