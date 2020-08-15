@@ -48,7 +48,7 @@ const Role=sequelize.define('Role',{
 User.hasOne(Role)
 Role.belongsTo(User)
 
-const init=async function(){
+/*const init=async function(){
     try{
     await User.sync({alter:true})
     await Role.sync({alter:true})
@@ -58,6 +58,6 @@ const init=async function(){
         console.log(err)
     }
 }
-init()
+init()*/
 
 module.exports={User,Role}

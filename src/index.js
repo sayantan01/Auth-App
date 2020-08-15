@@ -14,6 +14,8 @@ app.use(express.static(path.join(__dirname+'../../client/build')))
 
 const {PORT, SESS_NAME, SESS_SECRET, SESS_TIME, NODE_ENV} = require('./config')
 
+
+
 app.use(session({
     name:SESS_NAME,
     secret:SESS_SECRET,
@@ -23,9 +25,12 @@ app.use(session({
     cookie:{
         maxAge:SESS_TIME,
         sameSite:true,
+        //secure:false
         secure:(NODE_ENV==='production')?true:false
     }
 }))
+
+
 
 app.get('/',(req,res)=>{
 		res.sendFile(path.join(__dirname+'../../client/build/index.html'))

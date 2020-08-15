@@ -5,6 +5,8 @@ const check=require('./validation')
 const {User,Role}=require('./models')
 const {SESS_NAME} = require('./config')
 
+
+
 router.post('/register',async(req,res)=>{
     const {email,password,role} = req.body
     try{
@@ -80,6 +82,7 @@ router.post('/logout',(req,res)=>{
 })
 
 router.get('/get',async(req,res)=>{
+ 
     try
     {
         const users=await User.findAll({attributes:['email'],include:[
